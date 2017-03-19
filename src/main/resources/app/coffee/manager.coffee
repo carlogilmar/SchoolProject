@@ -3,4 +3,3 @@ class @.ViewResolver
     source = $(templateName).html()
     template = Handlebars.compile source
     template(model)
-
