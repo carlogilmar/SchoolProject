@@ -6,15 +6,15 @@ class @.App
 class @.UrlManager
 
   constructor: ->
-    @emailerController = new EmailerController()
+    @beeController = new BeeController()
     @start()
 
   start: ->
     @routes =
-      '/': @emailerController.new
-      '/practice': @emailerController.new
-      '/problems': @emailerController.new
-      '/exams': @emailerController.new
+      '/': @beeController.dashboard
+      '/practice': @beeController.practice
+      '/problems': @beeController.problems
+      '/exams': @beeController.exams
     @urlMappings()
 
   urlMappings: ->
