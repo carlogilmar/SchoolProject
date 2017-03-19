@@ -1,0 +1,11 @@
+.gradle/
+src/main/groovy/conf.json
+build/
+src/main/resources/app/third-party/
+.node-version
+.vertx/
+data/
+conf.json
+src/main/resources/app/coffee/*.js
+*.DS_Store
+*.properties
