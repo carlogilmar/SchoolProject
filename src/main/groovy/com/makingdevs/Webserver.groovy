@@ -52,7 +52,7 @@ router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)))
 def authProvider = MongoAuth.create(mongoClient, [:])
 
 /*
-authProvider.insertUser("username","password", [],[]){ res ->
+authProvider.insertUser("carlo","carlo", [],[]){ res ->
   println "*"*100
   println res.dump()
 }*/
@@ -118,6 +118,8 @@ router.post("/newEmail").handler { routingContext ->
 
 //Show all emails
 router.route("/show").handler({ routingContext ->
+  println "----------------------show user----------"
+  println routingContext.user().dump()
   vertx.eventBus().send("com.makingdevs.emailer.show.total", "Show me", { reply ->
     if (reply.succeeded()) {
       routingContext.response()
