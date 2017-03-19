@@ -63,6 +63,7 @@ router.route("/app/*").handler(RedirectAuthHandler.create(authProvider, "/static
 
 router.route("/app/*").handler(StaticHandler.create().setCachingEnabled(false).setWebRoot("app"))
 
+//Verticle de autentificacion
 router.post("/loginhandler").handler { routingContext ->
   def params = routingContext.request().params()
   def authInfo = [
@@ -80,6 +81,29 @@ router.post("/loginhandler").handler { routingContext ->
       .putHeader("location", "/app/")
       .end()
   })
+}
+
+//Verticle de registro
+router.post("/registerhandler").handler { routingContext ->
+  def params = routingContext.request().params()
+  def authInfo = [
+    username:params.username,
+    password:params.password
+   ]
+  //Registrando en mongo
+  authProvider.insertUser(authInfo.username,authInfo.password, [],[]){ res ->
+  println "Registrando usuario--------->"
+  println res.dump()
+  }
+  //TODO:Registrando otros datos en mongo
+
+  //TODO: Enviar correo de confirmación
+
+  //Redireccioando al main
+    routingContext.response()
+      .setStatusCode(302)
+      .putHeader("location", "/app/")
+      .end()
 }
 
 router.route("/logout").handler({ contextResponse ->
