@@ -2,11 +2,6 @@ class @.App
   constructor: ->
     @manager= new UrlManager()
     Verticle.init()
-    @helper()
-
-  helper: ()->
-    Handlebars.registerHelper 'currentIndex', (index, skip) ->
-      parseInt(index) + 1 + parseInt(skip)
 
 class @.UrlManager
 
@@ -16,13 +11,10 @@ class @.UrlManager
 
   start: ->
     @routes =
-      '/': @emailerController.index
-      '/newEmailer': @emailerController.new
-      '/readEmailers': @emailerController.readEmailers
-      '/setEmails/:id': @emailerController.readSetEmailers
-      '/previewEmailer/:id': @emailerController.previewEmailer
-      '/editEmailer/:id': @emailerController.editEmailer
-      '/deleteEmailer/:id':@emailerController.delete
+      '/': @emailerController.new
+      '/practice': @emailerController.new
+      '/problems': @emailerController.new
+      '/exams': @emailerController.new
     @urlMappings()
 
   urlMappings: ->
