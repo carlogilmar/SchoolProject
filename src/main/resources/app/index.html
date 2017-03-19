@@ -10,38 +10,31 @@
 
   <body>
     <script id="index-hb" type="text/x-handlebars-template">
-<h1>Index template rules!{{name}}</h1>
+    <h1>Index template rules!{{name}}</h1>
     </script>
     <script id="exam-hb" type="text/x-handlebars-template">
       <h1>exam template rules!</h1>
     </script>
+
     <script id="practice-hb" type="text/x-handlebars-template">
-      <h1>practice template rules!</h1>
+    <h1>Esta es la práctica, consta de 10 ejercicios que deberás completar, adelante :D</h1>
+    {{num1}} --{{operator}}-- {{num2}} = ?
+    iterando aqui
+    <div id="numberOne">Number One</div>
+    <div id="numberTwo">Number Two</div>
+
+    <form method="post">
+    <input type=number name="practice" required />
+    <input type=submit value="evaluar" />
+    </form>
     </script>
+
     <script id="problem-hb" type="text/x-handlebars-template">
       <h1>hb template rules!</h1>
     </script>
     <script id="record-hb" type="text/x-handlebars-template">
       <h1>record template rules!</h1>
     </script>
-
-    <!--
-    <nav class="navbar navbar-inverse bg-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            Beedle Platform</a>
-        </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/practice">Practica</a></li>
-            <li><a href="#/problems">Razone</a></li>
-            <li><a href="#/exams">Evalua</a></li>
-            <li><a href="#">Tu Record</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    -->
 
     <nav class="navbar navbar-findcond navbar-fixed-top">
       <div class="container">
