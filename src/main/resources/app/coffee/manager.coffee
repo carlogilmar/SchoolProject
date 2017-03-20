@@ -11,12 +11,19 @@ class @.Teacher
       e.preventDefault()
       if $('#result').val() == $('#response').val()
         console.log 'Son iguales'
-        console.log 'pintando ando'
       else
         console.log 'errorz'
 
   @evaluate: ->
     $('#nextEval').on 'click', (e) ->
+      if $('#result').val() == $('#response').val()
+        console.log 'Son iguales'
+        record = parseInt($("#record").html())
+        $('#record').html(record+1)
+      else
+        console.log 'errorz'
+      counter = parseInt($("#iteration").html())
+      $('#iteration').html(counter+1)
       PracticerHelper.practice()
 
 class @.RandomHelper
