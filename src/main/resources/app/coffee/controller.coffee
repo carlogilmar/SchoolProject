@@ -1,7 +1,7 @@
 class @.BeeController
   baseUrl = "http://localhost:8000"
 
-  dashboard: ->
+  practice: ->
     numberOne = parseInt Math.random() * (10 - 1) + 1
     numberTwo = parseInt Math.random() * (numberOne - 1) + 1
     random = parseInt Math.random() * (5 - 1) + 1
@@ -24,6 +24,7 @@ class @.BeeController
 
     html = ViewResolver.mergeViewWithModel "#practice-hb", context
     $("#handlebars").html(html)
+    Teacher.evaluateExercise()
 
     counter = 1
     while counter <= numberOne
@@ -36,10 +37,10 @@ class @.BeeController
       $("#numberTwo").after("<span class='glyphicon glyphicon-star' ></span>")
       counter++
 
-  practice: ->
+  dashboard: ->
     context =
       name: "Practice"
-    html = ViewResolver.mergeViewWithModel "#practice-hb", context
+    html = ViewResolver.mergeViewWithModel "#index-hb", context
     $("#handlebars").html(html)
 
   problems: ->

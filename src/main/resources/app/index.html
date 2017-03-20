@@ -9,29 +9,33 @@
   </head>
 
   <body>
+
     <script id="index-hb" type="text/x-handlebars-template">
     <h1>Index template rules!{{name}}</h1>
     </script>
+
     <script id="exam-hb" type="text/x-handlebars-template">
       <h1>exam template rules!</h1>
     </script>
 
     <script id="practice-hb" type="text/x-handlebars-template">
     <h1>Esta es la práctica, consta de 10 ejercicios que deberás completar, adelante :D</h1>
-    {{num1}} --{{operator}}-- {{num2}} = ?
+    {{num1}} {{operator}} {{num2}} = ?
     iterando aqui
     <div id="numberOne">Number One</div>
     <div id="numberTwo">Number Two</div>
 
     <form method="post">
-    <input type=number name="practice" required />
-    <input type=submit value="evaluar" />
+    <input type=number id="response" required />
+    <input type=number id="result" value={{result}} required />
+    <input type=submit name="submitEval" id="submitEval" value="evaluar" />
     </form>
     </script>
 
     <script id="problem-hb" type="text/x-handlebars-template">
       <h1>hb template rules!</h1>
     </script>
+
     <script id="record-hb" type="text/x-handlebars-template">
       <h1>record template rules!</h1>
     </script>
@@ -50,11 +54,14 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> ¡Practica!<span class="badge">0</span></a>
+              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> ¡Practica!<span class="badge" id="record">0</span></a>
             </li>
+            <li class="active"><a href="#/practice"> Practica <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#/problems"> Razona <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#/exams"> Evalua <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#"> Dashboard <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#/info"> Información <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#/logout"> Salir <span class="sr-only">(current)</span></a></li>
           </ul>
         </div>
       </div>
