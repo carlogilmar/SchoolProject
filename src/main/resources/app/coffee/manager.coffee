@@ -27,6 +27,7 @@ class @.Teacher
         alert "tu calificación de la prueba fue de #{calification}. Guardando dato"
         $('#record').html(0)
         $('#iteration').html(0)
+        ConnectorManager.addTest calification, "practice_type"
         UrlManager.setRoute()
 
 class @.RandomHelper
@@ -74,4 +75,27 @@ class @.PracticerHelper
     RandomHelper.drawNumbers numbers.num1, "#numberOne"
     RandomHelper.drawNumbers numbers.num2, "#numberTwo"
 
+class @.ConnectorManager
+
+  baseUrl = "http://localhost:8000"
+
+  @addTest:(evaluation, evalType)->
+    data =
+     evaluation: evaluation
+     evaluationType: evalType
+    $.ajax
+      data: data
+      type: 'post'
+      url: baseUrl + '/registerTest'
+      success: ->
+        console.log "Exito al agregar"
+      error: ->
+        console.log "Error al agregar"
+
+  @getRecords:->
+    $.get('http://localhost:8000/findRecord').done((response)->
+      console.log "leyendo record"
+      console.log response
+    ).fail ->
+      console.log "Error al consultar el record"
 

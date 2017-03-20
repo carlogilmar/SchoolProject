@@ -120,221 +120,40 @@ router.route("/static/*").handler(
   StaticHandler.create().setCachingEnabled(false)
 )
 
-//Add new Email
-router.post("/newEmail").handler { routingContext ->
+//Add new test evaluation
+router.post("/registerTest").handler { routingContext ->
   def params = routingContext.request().params()
-  def email = [
-  subject:params.subjectEmail,
-  content:params.contentEmail,
-  dateCreated:new Date().time,
-  lastUpdate:new Date().time,
-  version:1
+  def username = routingContext.user().delegate.principal.map.username
+  def testEvaluation= [
+    username: username,
+    date: new Date().time,
+    evaluation: params.evaluation,
+    type: params.evaluationType
   ]
-  vertx.eventBus().send("com.makingdevs.emailer.new", email, { reply ->
+  vertx.eventBus().send("com.carlogilmar.test.new", testEvaluation, { reply ->
     if (reply.succeeded()) {
       routingContext.response()
       .setStatusCode(201)
       .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily([msg:"Email Agregado Correctamente."]))
+      .end(Json.encodePrettily([msg:"Calificación Agregado Correctamente."]))
     }
   })
 }
 
-//Show all emails
-router.route("/show").handler({ routingContext ->
-  println "----------------------show user----------"
-  println routingContext.user().dump()
-  vertx.eventBus().send("com.makingdevs.emailer.show.total", "Show me", { reply ->
-    if (reply.succeeded()) {
+router.route("/findRecord").handler{ routingContext ->
+  def user= [username: routingContext.user().delegate.principal.map.username]
+  println "------------------>>>>"
+  println user.dump()
+  vertx.eventBus().send("com.carlogilmar.test.findAll", user, { reply ->
+    if (reply.succeeded())
+      println "imprimiento respuesta:"
+      println reply.result().body()
       routingContext.response()
-      .setStatusCode(200)
+      .setStatusCode(201)
       .putHeader("content-type", "application/json; charset=utf-8")
       .end(Json.encodePrettily(reply.result().body()))
-    }
-
   })
-})
-
-//Remove an email
-router.post("/remove").handler { routingContext ->
-  def emailRemove= routingContext.request().getParam("idEmail")
-  def query = ["_id":emailRemove]
-  vertx.eventBus().send("com.makingdevs.emailer.remove", query, { reply ->
-    if (reply.succeeded()) {
-      routingContext.response()
-      .setStatusCode(200)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily([msg:"Email Eliminado Correctamente ${reply.result().body()}"]))
-    }
-  })
-}
-
-//Count all of emails
-router.route("/countTotal").handler({ routingContext ->
-  vertx.eventBus().send("com.makingdevs.emailer.count", "Dame el conteo", { reply ->
-    if (reply.succeeded()) {
-      routingContext.response()
-      .setStatusCode(200)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily([count:reply.result().body()]))
-    }
-  })
-})
-
-//Show one Email
-router.post("/showEmail").handler { routingContext ->
-  def emailId= routingContext.request().getParam("idEmail")
-  def query = ["_id":emailId]
-  vertx.eventBus().send("com.makingdevs.emailer.show.one", query, { reply ->
-    if (reply.succeeded()) {
-      routingContext.response()
-      .setStatusCode(200)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily(reply.result().body()))
-    }
-  })
-}
-
-//Show set of emails
-router.post("/showSet").handler { routingContext ->
-
-  def setValue=0
-  setValue= routingContext.request().getParam("setValue")
-  def options=[
-  limit:10,
-  skip:setValue.toInteger()
-  ]
-  //comunicate with verticle
-  vertx.eventBus().send("com.makingdevs.emailer.show.set", options, { reply ->
-    if (reply.succeeded()) {
-      routingContext.response()
-      .setStatusCode(200)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily(reply.result().body()))
-    }
-  })
-}
-
-//Actualizar un email
-router.post("/update").handler { routingContext ->
-  //Obtener datos del update
-  def paramsUpdate=routingContext.request().params()
-  //mensaje que actualizará los datos, seguir el orden
-  def message=[
-  id:paramsUpdate.email_id,//id del email a actualizar
-  subject:paramsUpdate.subjectEmail,//subject
-  content:paramsUpdate.contentEmail,//contenido
-  version:paramsUpdate.versionEmail.toInteger()+1,//Version
-  update:new Date().time//fecha nueva en que esta siendo actualizado
-  ]
-
-  vertx.eventBus().send("com.makingdevs.emailer.update", message, { reply ->
-    if (reply.succeeded()) {
-      routingContext.response()
-      .setStatusCode(200)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily([msg:"Solicitud Enviada Correctamente."]))
-    }
-  })
-}
-
-//Mandar el preview a un email
-router.post("/send").handler { routingContext ->
-
-  def idTemplate= routingContext.request().getParam("email_id")
-  def emailToSend= routingContext.request().getParam("emailPreview")
-  def message=[
-  id:idTemplate,
-  email:emailToSend
-  ]
-  vertx.eventBus().send("com.makingdevs.emailer.send", message)
-
-  routingContext.response()
-  .setStatusCode(200)
-  .putHeader("content-type", "application/json; charset=utf-8")
-  .end(Json.encodePrettily([msg:"Solicitud Enviada Correctamente."]))
-}
-
-//Route para el servicio Web
-router.post("/serviceEmail").handler { routingContext ->
-
-  def authHeader = routingContext.request().getHeader("Authorization")
-
-  if (!authHeader){
-    routingContext.response()
-      .setStatusCode(400)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily([
-        message:"Please login first. You have to include your username and password at Authentification Header"
-      ]))
-  }
-  else{
-
-  vertx.eventBus().send("com.makingdevs.emailer.decode", authHeader){ auth ->
-
-  def arguments = auth.result().body()
-
-  def authInfo = [
-    username:arguments.username,
-    password:arguments.password
-   ]
-
-  //Creando Sesión
-  authProvider.authenticate(authInfo, { res ->
-    if (!res.failed()) {
-      routingContext.setUser(res.result())
-      def emailerParams=[
-        id:arguments.id,
-        to:arguments.to,
-        subject:arguments.subject,
-        params:arguments.params
-      ]
-
-      if(routingContext.getBody().length()){
-        def jsonResponse=routingContext.getBodyAsJson()
-        vertx.eventBus().send("com.makingdevs.emailer.check", jsonResponse){ reply ->
-        def status = 0
-        def response = [:]
-
-        if(reply.result.body() == "ok" ){
-          status = 200
-          vertx.eventBus().send("com.makingdevs.emailer.service", jsonResponse)
-          response.message = "Request sent successfully"
-        }
-        else{
-          status = 400
-          response.message = "I can't do my job. You have the follow errors"
-          response.errors = reply.result().body()
-        }
-
-        routingContext.response()
-        .setStatusCode(status)
-        .putHeader("Content-Type", "application/json; charset=utf-8")
-        .end(Json.encodePrettily(response))
-        }
-     }
-    else {
-    //response
-      routingContext.response()
-      .setStatusCode(400)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily([
-        message:"Please send arguments to Emailer Service"
-        ]))
-    }
-    }
-    else{
-      routingContext.response()
-      .setStatusCode(400)
-      .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily([
-        message:"Please login with correct username and valid password."
-      ]))
-     }
-    })
-   }
-  }
-}
+}//main
 
 server.requestHandler(router.&accept).listen(8000)
 

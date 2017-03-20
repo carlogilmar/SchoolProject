@@ -9,6 +9,7 @@ class @.BeeController
       name: "Practice"
     html = ViewResolver.mergeViewWithModel "#index-hb", context
     $("#handlebars").html(html)
+    ConnectorManager.getRecords()
 
   problems: ->
     context =
