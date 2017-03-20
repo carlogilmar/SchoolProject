@@ -140,20 +140,40 @@ router.post("/registerTest").handler { routingContext ->
   })
 }
 
+//find all records for a specific username
 router.route("/findRecord").handler{ routingContext ->
   def user= [username: routingContext.user().delegate.principal.map.username]
-  println "------------------>>>>"
-  println user.dump()
   vertx.eventBus().send("com.carlogilmar.test.findAll", user, { reply ->
     if (reply.succeeded())
-      println "imprimiento respuesta:"
-      println reply.result().body()
       routingContext.response()
       .setStatusCode(201)
       .putHeader("content-type", "application/json; charset=utf-8")
       .end(Json.encodePrettily(reply.result().body()))
   })
 }//main
+
+//Register a problem
+router.post("/registerProblem").handler { routingContext ->
+  def params = routingContext.request().params()
+  def problemRegister= [
+    description: params.description,
+    result: 10,
+    dateCreated: new Date().time
+  ]
+  println "...............>"
+  println params.dump()
+  println "----------------"
+  println problemRegister
+
+  vertx.eventBus().send("com.carlogilmar.problem.new", problemRegister, { reply ->
+    if (reply.succeeded()) {
+      routingContext.response()
+      .setStatusCode(201)
+      .putHeader("content-type", "application/json; charset=utf-8")
+      .end(Json.encodePrettily([msg:"Problema Agregado Correctamente."]))
+    }
+  })
+}
 
 server.requestHandler(router.&accept).listen(8000)
 

@@ -33,16 +33,22 @@ eb.consumer("com.carlogilmar.test.new", { message ->
     })
 })
 
+//Add new Test Evaluation
+eb.consumer("com.carlogilmar.problem.new", { message ->
+    mongoClient.save("problems", message.body(), { id ->
+      if (id.succeeded()) {
+        message.reply("[ok]")
+      } else {
+        res.cause().printStackTrace()
+      }
+    })
+})
+
 //Show all test by username
 eb.consumer("com.carlogilmar.test.findAll") { message ->
-
     def query=[
       username:message.body().username
     ]
-    println query.dump()
-    println "imprimiendo message"
-    println message.body()
-
     mongoClient.find("evaluations", query) { res ->
       if (res.succeeded()) {
         message.reply(res.result())}
