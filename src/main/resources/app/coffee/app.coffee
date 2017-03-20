@@ -23,7 +23,7 @@ class @.UrlManager
 
   @setRoute: ->
     router = Router(@routes)
-    router.setRoute '/practice'
+    router.setRoute '/'
 
 class @.Verticle
   baseUrl = "http://localhost:8000"

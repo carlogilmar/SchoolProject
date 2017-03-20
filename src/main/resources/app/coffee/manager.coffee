@@ -6,14 +6,6 @@ class @.ViewResolver
 
 class @.Teacher
 
-  @evaluateExercise: ->
-    $('#submitEval').on 'click', (e) ->
-      e.preventDefault()
-      if $('#result').val() == $('#response').val()
-        console.log 'Son iguales'
-      else
-        console.log 'errorz'
-
   @evaluate: ->
     $('#nextEval').on 'click', (e) ->
       if $('#result').val() == $('#response').val()
@@ -24,7 +16,18 @@ class @.Teacher
         console.log 'errorz'
       counter = parseInt($("#iteration").html())
       $('#iteration').html(counter+1)
-      PracticerHelper.practice()
+
+      iteration = parseInt($('#iteration').html())
+      if iteration < 11
+        PracticerHelper.practice()
+      else
+        e.preventDefault()
+        console.log "Haz concluido una prueba"
+        calification = parseInt($("#record").html())
+        alert "tu calificación de la prueba fue de #{calification}. Guardando dato"
+        $('#record').html(0)
+        $('#iteration').html(0)
+        UrlManager.setRoute()
 
 class @.RandomHelper
 
