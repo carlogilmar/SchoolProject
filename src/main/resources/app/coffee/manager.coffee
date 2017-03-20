@@ -70,7 +70,6 @@ class @.PracticerHelper
       result: numbers.result
     html = ViewResolver.mergeViewWithModel "#practice-hb", context
     $("#handlebars").html(html)
-    Teacher.evaluateExercise()
     Teacher.evaluate()
     RandomHelper.drawNumbers numbers.num1, "#numberOne"
     RandomHelper.drawNumbers numbers.num2, "#numberTwo"
