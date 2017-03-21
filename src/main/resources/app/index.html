@@ -19,19 +19,25 @@
     </script>
 
     <script id="practice-hb" type="text/x-handlebars-template">
-    <h1>Esta es la práctica, consta de 10 ejercicios que deberás completar, adelante :D</h1>
-    {{num1}} {{operator}} {{num2}} = ?
-    iterando aqui
-    <div id="numberOne">Number One</div>
-    <div id="numberTwo">Number Two</div>
+    <div class="row text-center">
+      <div class="col-md-6 col-md-offset-3">
 
-    <form method="post">
-    <input type=number id="response" required />
-    <input type=number id="result" value={{result}} required />
-    <input type=submit name="submitEval" id="submitEval" value="evaluar" />
-    </form>
-    <button type="button" id="nextEval" class="btn btn-primary">Primary</button>
+       <h2>Set de Prácticas</h2><br>
+       <p align="center"> Resuelve un set de 10 ejercicios prácticos, aquí arriba tienes el contador de puntos y el de ejercicios resueltos</p><br>
 
+    <small>Ejercicio: {{num1}} {{operator}} {{num2}} = ? </small><br><br>
+        <div id="numberOne"></div>
+        <div id="operator"><h1>{{operator}}</h1></div>
+        <div id="numberTwo"></div>
+        <div id="result"><h1>=</h1></div>
+
+      <form method="post">
+        <input type="number" id="responseInput" required />
+        <input type="number" id="resultInput" value={{result}} required />
+      </form><br>
+
+    <button type="button" id="nextEval" class="btn btn-primary">Evaluar</button>
+    </div>
     </script>
 
     <script id="problem-hb" type="text/x-handlebars-template">
@@ -56,10 +62,10 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul id="nav" class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i><span class="badge" id="record">0</span></a>
+              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><small>Puntaje</small><i class="fa fa-fw fa-bell-o"></i><span class="badge" id="record">0</span></a>
             </li>
             <li class="dropdown">
-              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i><span class="badge" id="iteration">0</span></a>
+              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><small>Ejercicio</small><i class="fa fa-fw fa-bell-o"></i><span class="badge" id="iteration">0</span></a>
             </li>
 
             <li class="active"><a href="#/practice"> Practica <span class="sr-only">(current)</span></a></li>
@@ -67,7 +73,7 @@
             <li class="active"><a href="#/exams"> Evalua <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#"> Dashboard <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#/info"> Información <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="#/logout"> Salir <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="http://localhost:8000/logout"> Salir <span class="sr-only">(current)</span></a></li>
           </ul>
         </div>
       </div>

@@ -8,12 +8,13 @@ class @.Teacher
 
   @evaluate: ->
     $('#nextEval').on 'click', (e) ->
-      if $('#result').val() == $('#response').val()
-        console.log 'Son iguales'
+      if $('#resultInput').val() == $('#responseInput').val()
+        alert 'El resultado es correcto'
         record = parseInt($("#record").html())
         $('#record').html(record+1)
       else
-        console.log 'errorz'
+        alert 'errorz'
+
       counter = parseInt($("#iteration").html())
       $('#iteration').html(counter+1)
 
@@ -58,7 +59,7 @@ class @.RandomHelper
   @drawNumbers:(size, divName)->
     counter = 1
     while counter <= size
-      $(divName).after("<span class='glyphicon glyphicon-star' ></span>")
+      $(divName).after("<img src='resources/abeja.png' />")
       counter++
 
 class @.PracticerHelper
