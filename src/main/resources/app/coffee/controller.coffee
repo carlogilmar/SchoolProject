@@ -18,8 +18,4 @@ class @.BeeController
     $("#handlebars").html(html)
 
   exams: ->
-    context =
-      name: "Exams"
-    html = ViewResolver.mergeViewWithModel "#index-hb", context
-    $("#handlebars").html(html)
-
+    PracticerHelper.exam()

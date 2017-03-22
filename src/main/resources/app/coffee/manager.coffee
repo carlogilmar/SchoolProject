@@ -6,7 +6,7 @@ class @.ViewResolver
 
 class @.Teacher
 
-  @evaluate: ->
+  @evaluate:(type)->
     $('#nextEval').on 'click', (e) ->
       if $('#resultInput').val() == $('#responseInput').val()
         alert 'El resultado es correcto'
@@ -20,7 +20,11 @@ class @.Teacher
 
       iteration = parseInt($('#iteration').html())
       if iteration < 11
-        PracticerHelper.practice()
+        if type == "practice_type"
+          PracticerHelper.practice()
+        else
+           if type == "exam_type"
+             PracticerHelper.exam()
       else
         e.preventDefault()
         console.log "Haz concluido una prueba"
@@ -28,7 +32,7 @@ class @.Teacher
         alert "tu calificación de la prueba fue de #{calification}. Guardando dato"
         $('#record').html(0)
         $('#iteration').html(0)
-        ConnectorManager.addTest calification, "practice_type"
+        ConnectorManager.addTest calification, type
         UrlManager.setRoute()
 
 class @.RandomHelper
@@ -72,9 +76,21 @@ class @.PracticerHelper
       result: numbers.result
     html = ViewResolver.mergeViewWithModel "#practice-hb", context
     $("#handlebars").html(html)
-    Teacher.evaluate()
+    Teacher.evaluate "practice_type"
     RandomHelper.drawNumbers numbers.num1, "#numberOne"
     RandomHelper.drawNumbers numbers.num2, "#numberTwo"
+
+  @exam: ->
+    numbers = RandomHelper.numbers()
+    context =
+      num1: numbers.num1
+      num2: numbers.num2
+      operator: numbers.operator
+      result: numbers.result
+    html = ViewResolver.mergeViewWithModel "#exam-hb", context
+    $("#handlebars").html(html)
+    Teacher.evaluate "exam_type"
+
 
 class @.ConnectorManager
 

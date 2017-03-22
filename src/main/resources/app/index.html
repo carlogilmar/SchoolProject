@@ -15,7 +15,21 @@
     </script>
 
     <script id="exam-hb" type="text/x-handlebars-template">
-      <h1>exam template rules!</h1>
+    <div class="row text-center">
+      <div class="col-md-6 col-md-offset-3">
+
+       <h2>Examen de Ejercicios Prácticos</h2><br>
+       <p align="center"> Resuelve y practica con un examen de 10 ejercicios prácticos, aquí arriba tienes el contador de puntos y el de ejercicios resueltos</p><br>
+
+    <small>Ejercicio: {{num1}} {{operator}} {{num2}} = ? </small><br><br>
+      <form method="post">
+        <input type="number" id="responseInput" required />
+        <input type="hidden" id="resultInput" value={{result}} required />
+      </form><br>
+
+    <button type="button" id="nextEval" class="btn btn-primary">Evaluar</button>
+    </div>
+
     </script>
 
     <script id="practice-hb" type="text/x-handlebars-template">
@@ -33,7 +47,7 @@
 
       <form method="post">
         <input type="number" id="responseInput" required />
-        <input type="number" id="resultInput" value={{result}} required />
+        <input type="hidden" id="resultInput" value={{result}} required />
       </form><br>
 
     <button type="button" id="nextEval" class="btn btn-primary">Evaluar</button>
