@@ -17,7 +17,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Bee Platform</a>
+          <a class="navbar-brand" href="#">Delta Interactive Platform</a>
         </div>
       </div>
     </nav>
@@ -25,60 +25,30 @@
     <br>
     <br>
     <br>
-    <h3 class="font" align="center">Bee Platform</h3>
-    <h4 align="center" class="common">Por favor ingresa tu usuario y contraseña</h4>
 
-    <div class="center">
-      <form class="form-inline" action="/loginhandler" method="post">
-        <div class="form-group">
-          <label for="exampleInputName2" class="common">Usuario</label>
-          <input type="text" class="form-control"id="username" name="username" required >
+    <div class="row">
+      <div class="col-6 col-md-4"></div>
+      <div class="col-6 col-md-4">
+        <h3 class="font" align="center">Inicia sesión</h3>
+        <div class="center">
+          <form action="/loginhandler" method="post">
+            <div class="form-group">
+              <label for="exampleInputName2" class="common">Usuario</label>
+              <input type="text" class="form-control"id="username" name="username" required >
+            </div>
+              <div class="form-group">
+                <label for="password" class="common">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <br><br><button type="submit" class="btn btn-success">Iniciar Sesión</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="password" class="common">Password</label>
-          <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <br><br><button type="submit" class="btn btn-default"> Ingresar</button>
-      </form>
+      </div>
     </div>
 
     <div class="center">
-      <h3 class="common" align="center">¿Quieres aprender matemáticas? ¡Registrate!</h3>
-      <h3 align="center" class="common">Esta plataforma impulsará tu talento para aprender matemáticas de una forma práctica e iterativa, para poder accesar a los recursos por favor registrate aquí.</h3>
-
-      <form action="/registerhandler" method="post">
-        <div class="form-inline">
-        <div class="form-group">
-          <label for="nombre" class="common">Nombre</label>
-          <input type="text" class="form-control"id="name" name="name" required >
-        </div>
-        <div class="form-group">
-          <label for="" class="common">Apellidos</label>
-          <input type="text" class="form-control"id="surname" name="surname" required >
-        </div>
-        <div class="form-group">
-          <label for="email" class="common">Correo</label>
-          <input type="email" class="form-control"id="email" name="email" required >
-        </div>
-        </div>
-        <br>
-        <div class="form-inline">
-        <div class="form-group">
-          <label for="age" class="common">Edad</label>
-          <input type="number" class="form-control"id="age" name="age" size=4 required >
-        </div>
-        <div class="form-group">
-          <label for="usuario" class="common">Usuario</label>
-          <input type="text" class="form-control"id="username" name="username" required >
-        </div>
-        <div class="form-group">
-          <label for="password" class="common">Password</label>
-          <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        </div>
-        <br><br><button type="submit" class="btn btn-default"> Registrar </button>
-      </form>
-
+      <h2 class="common" align="center">¿Quieres aprender matemáticas? ¡ Puedes registrarte tú y tu tutor para comenzar a practicar!</h2>
+      <a class="btn btn-primary" href="http://localhost:8000/static/login.html">Quiero iniciar mi registro</a>
     </div>
 
     <div>
