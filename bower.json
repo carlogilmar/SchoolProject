@@ -20,6 +20,8 @@
     "vertx3-eventbus-client": "^3.3.3",
     "sockjs-client": "^1.1.1",
     "director": "^1.2.8",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "chartist": "^0.11.0",
+    "vivus": "^0.4.0"
   }
 }

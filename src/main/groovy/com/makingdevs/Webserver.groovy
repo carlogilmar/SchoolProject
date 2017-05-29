@@ -144,11 +144,16 @@ router.post("/registerTest").handler { routingContext ->
 router.route("/findRecord").handler{ routingContext ->
   def user= [username: routingContext.user().delegate.principal.map.username]
   vertx.eventBus().send("com.carlogilmar.test.findAll", user, { reply ->
-    if (reply.succeeded())
+    if (reply.succeeded()){
+    ArrayList records = reply.result().body()
+    List dates = records.collect{ it.date }
+    List evaluations = records.collect{ it.evaluation }
+    Map response = [dates: dates, evaluations:evaluations]
       routingContext.response()
       .setStatusCode(201)
       .putHeader("content-type", "application/json; charset=utf-8")
-      .end(Json.encodePrettily(reply.result().body()))
+      .end(Json.encodePrettily(response))
+    }
   })
 }//main
 

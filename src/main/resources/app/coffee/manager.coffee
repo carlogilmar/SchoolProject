@@ -113,6 +113,15 @@ class @.ConnectorManager
     $.get('http://localhost:8000/findRecord').done((response)->
       console.log "leyendo record"
       console.log response
+      console.log response.dates
+      console.log response.evaluations
+      new (Chartist.Line)('.ct-chart', {
+        series: [response.evaluations]
+        #labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+        #series: [[1, 2, 2.5, 3.5, 4]]
+      },
+          width: 1000
+          height: 500)
     ).fail ->
       console.log "Error al consultar el record"
 

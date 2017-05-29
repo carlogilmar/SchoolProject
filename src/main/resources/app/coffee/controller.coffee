@@ -7,7 +7,7 @@ class @.BeeController
   dashboard: ->
     context =
       name: "Practice"
-    html = ViewResolver.mergeViewWithModel "#index-hb", context
+    html = ViewResolver.mergeViewWithModel "#dashboard", context
     $("#handlebars").html(html)
     ConnectorManager.getRecords()
 
