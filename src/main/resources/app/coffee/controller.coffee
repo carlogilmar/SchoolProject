@@ -19,3 +19,8 @@ class @.BeeController
 
   exams: ->
     PracticerHelper.exam()
+
+  info: ->
+    html = ViewResolver.mergeViewWithModel "#info-hb"
+    $("#handlebars").html(html)
+

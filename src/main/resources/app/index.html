@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Delta Platform</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet">
-    <link href="third-party/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="css/boots.css" rel="stylesheet">
     <link rel="stylesheet" href="third-party/chartist/dist/chartist.css">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/styleVivus.css" rel="stylesheet">
@@ -17,8 +17,12 @@
     </script>
 
     <script id="dashboard" type="text/x-handlebars-template">
-    <h1> Here will be someghintgjbbIndex template rules! for dashboard</h1>
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
     <div class="ct-chart"></div>
+    </div>
+    </div>
     </script>
 
     <script id="exam-hb" type="text/x-handlebars-template">
@@ -69,6 +73,80 @@
       <h1>record template rules!</h1>
     </script>
 
+    <script id="info-hb" type="text/x-handlebars-template">
+           <div class="text-center">
+           <h2>Delta Platform para aprender matemáticas</h2>
+           </div>
+           <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+            <!-- Carousel
+              ================================================== -->
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
+                    <img class="first-slide" src="https://drscdn.500px.org/photo/202219021/q%3D80_m%3D2000/3488bd33650cce84b8b131767d77fdcb" alt="First slide">
+                    <div class="container">
+                      <div class="carousel-caption">
+                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img class="second-slide" src="https://drscdn.500px.org/photo/156615783/q%3D80_m%3D2000/eeb44d424279b38c9279d107a8616f4a" alt="Second slide">
+                    <div class="container">
+                      <div class="carousel-caption">
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img class="third-slide" src="https://drscdn.500px.org/photo/156956513/q%3D80_m%3D2000/c51248ce5db14fd25bd87f0e7eca388c" alt="Third slide">
+                    <div class="container">
+                      <div class="carousel-caption">
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                  <span class="sr-only">Next</span>
+                </a>
+              </div><!-- /.carousel -->
+
+      <div class="row">
+              <!-- Example row of columns -->
+              <div class="row text-center">
+                <div class="col-md-4">
+                  <h2>Heading</h2>
+                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                  <h2>Heading</h2>
+                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                  <h2>Heading</h2>
+                  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </script>
+
     <nav class="navbar navbar-light" style="background-color: #FFD768;">
       <div class="container">
         <div class="navbar-header">
@@ -78,7 +156,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="navbar-brand"> <strong>DELTA PLATFORM</strong></div>
+          <div class="navbar-brand"> <strong>Delta Platform</strong></div>
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <ul id="nav" class="nav navbar-nav navbar-right">
@@ -101,9 +179,10 @@
       </div>
     </nav>
 
-    <div id="handlebars"><!-- Handlebars body content -->
-
-
+    <div id="handlebars" class="container"><!-- Handlebars body content -->
+      <div class="text-center">
+        <h2>Bienvenidos a Delta Platform</h2>
+      </div>
       <div class="row">
         <div class="bloc bloc-head">
           <svg height="300" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -138,109 +217,19 @@
         </div>
       </div>
 
-
-
-
-
-
-
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <h1 align="center">Delta Platform for Learn Mateatics</h1>
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <h1 align="center">Plataforma para aprender matemáticas</h1>
+          <a href="#/info"><h2>Cómo funciona</h2></a>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-6 col-sm-3"></div>
-        <div class="col-md-6 col-md-offset-3 center-block"><img class="center-block" src="resources/abeja_1.png"/></div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <h3 align="center">Delta Platform es una plataforma web que permite aprender matemáticas básicas a través de ejercicios y prácticas</h3>
-        </div>
-      </div>
-
-        <!-- Example row of columns -->
-        <div class="row text-center">
-          <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-          <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-          <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div>
-        </div>
-
-
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-      <!-- Carousel
-        ================================================== -->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <img class="first-slide" src="https://drscdn.500px.org/photo/202219021/q%3D80_m%3D2000/3488bd33650cce84b8b131767d77fdcb" alt="First slide">
-              <div class="container">
-                <div class="carousel-caption">
-                  <h1>Example headline.</h1>
-                  <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <img class="second-slide" src="https://drscdn.500px.org/photo/156615783/q%3D80_m%3D2000/eeb44d424279b38c9279d107a8616f4a" alt="Second slide">
-              <div class="container">
-                <div class="carousel-caption">
-                  <h1>Another example headline.</h1>
-                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <img class="third-slide" src="https://drscdn.500px.org/photo/156956513/q%3D80_m%3D2000/c51248ce5db14fd25bd87f0e7eca388c" alt="Third slide">
-              <div class="container">
-                <div class="carousel-caption">
-                  <h1>One more for good measure.</h1>
-                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div><!-- /.carousel -->
-
-      </div>
-    </div>
 
     </div><!-- Handlebars body content -->
 
-      <hr>
-
-      <footer>
-        <p>&copy; Proyecto de titulación creado por Brenda, Juan y @carlogilmar</p>
+      <footer class="footer">
+        <div class="container">
+          <p class="text-muted">Proyecto de Titulación</p>
+        </div>
       </footer>
 
     <script type="text/javascript" src="third-party/director/build/director.min.js"></script>

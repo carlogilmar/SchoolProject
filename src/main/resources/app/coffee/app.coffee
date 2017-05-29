@@ -15,6 +15,7 @@ class @.UrlManager
       '/practice': @beeController.practice
       '/problems': @beeController.problems
       '/exams': @beeController.exams
+      '/info': @beeController.info
     @urlMappings()
 
   urlMappings: ->
