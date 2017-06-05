@@ -17,14 +17,18 @@ class @.Teacher
 
       counter = parseInt($("#iteration").html())
       $('#iteration').html(counter+1)
+      progress = "#{counter+1}0%"
+      console.log progress
 
       iteration = parseInt($('#iteration').html())
-      if iteration < 11
+      if iteration < 10
         if type == "practice_type"
           PracticerHelper.practice()
+          document.getElementById("progressBar").style["width"] = progress
         else
            if type == "exam_type"
              PracticerHelper.exam()
+             document.getElementById("progressBar").style["width"] = progress
       else
         e.preventDefault()
         console.log "Haz concluido una prueba"

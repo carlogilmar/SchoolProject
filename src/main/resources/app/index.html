@@ -18,6 +18,58 @@
 
     <script id="dashboard" type="text/x-handlebars-template">
     <div class="row">
+      <h3 class="text-center"><b> Record de tus pruebas </b></h3>
+    </div>
+
+    <hr>
+    <div class="row">
+          <div class="col-lg-4">
+            <div class="bs-component">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge">14</span>
+                  Pruebas de Práctica
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">2</span>
+                  Pruebas de Razonamiento
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="bs-component">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge">14</span>
+                  Cras justo odio
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">2</span>
+                  Dapibus ac facilisis in
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-lg-4">
+            <div class="bs-component">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge">14</span>
+                  Cras justo odio
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">2</span>
+                  Dapibus ac facilisis in
+                </li>
+              </ul>
+            </div>
+            </div>
+        </div>
+    <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-8">
     <div class="ct-chart"></div>
@@ -31,6 +83,12 @@
 
        <h2>Examen de Ejercicios Prácticos</h2><br>
        <p align="center"> Resuelve y practica con un examen de 10 ejercicios prácticos, aquí arriba tienes el contador de puntos y el de ejercicios resueltos</p><br>
+
+       <div class="bs-component">
+        <div class="progress progress-striped active">
+          <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+       </div>
 
     <small>Ejercicio: {{num1}} {{operator}} {{num2}} = ? </small><br><br>
       <form method="post">
@@ -49,6 +107,13 @@
 
        <h2>Set de Prácticas</h2><br>
        <p align="center"> Resuelve un set de 10 ejercicios prácticos, aquí arriba tienes el contador de puntos y el de ejercicios resueltos</p><br>
+
+      <div class="bs-component">
+        <div class="progress progress-striped active">
+          <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+       </div>
+
 
     <small>Ejercicio: {{num1}} {{operator}} {{num2}} = ? </small><br><br>
         <div id="numberOne"></div>
@@ -227,8 +292,9 @@
     </div><!-- Handlebars body content -->
 
       <footer class="footer">
-        <div class="container">
-          <p class="text-muted">Proyecto de Titulación</p>
+        <div class="container text-center">
+          <strong class="text-muted">Proyecto de Titulación</strong><br>
+          <strong class="text-muted">Junio, 2017.</strong><br>
         </div>
       </footer>
 
