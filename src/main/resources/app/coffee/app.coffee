@@ -12,10 +12,15 @@ class @.UrlManager
   start: ->
     @routes =
       '/': @beeController.dashboard
+      '/plus': @beeController.plus
+      '/minus': @beeController.minus
+      '/multiply': @beeController.multiply
+      '/division': @beeController.division
       '/practice': @beeController.practice
       '/problems': @beeController.problems
       '/exams': @beeController.exams
       '/info': @beeController.info
+      '/status': @beeController.sstatuss
     @urlMappings()
 
   urlMappings: ->

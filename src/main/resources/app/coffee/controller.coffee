@@ -24,3 +24,15 @@ class @.BeeController
     html = ViewResolver.mergeViewWithModel "#info-hb"
     $("#handlebars").html(html)
 
+  plus: ->
+    PracticerHelper.plus()
+
+  minus: ->
+    PracticerHelper.minus()
+
+  multiply: ->
+    PracticerHelper.multiply()
+
+  division: ->
+    PracticerHelper.division()
+

@@ -9,11 +9,13 @@ class @.Teacher
   @evaluate:(type)->
     $('#nextEval').on 'click', (e) ->
       if $('#resultInput').val() == $('#responseInput').val()
-        alert 'El resultado es correcto'
+        swal 'Respuesta Correcta', '¡Acierto!', 'success'
         record = parseInt($("#record").html())
         $('#record').html(record+1)
       else
-        alert 'errorz'
+        res = parseInt($("resultInput").val())
+        console.log res
+        swal 'Respuesta equivocada', "Sigue practicando", 'error'
 
       counter = parseInt($("#iteration").html())
       $('#iteration').html(counter+1)
@@ -25,13 +27,24 @@ class @.Teacher
         if type == "practice_type"
           PracticerHelper.practice()
           document.getElementById("progressBar").style["width"] = progress
-        else
-           if type == "exam_type"
-             PracticerHelper.exam()
-             document.getElementById("progressBar").style["width"] = progress
+        else if type == "exam_type"
+          PracticerHelper.exam()
+          document.getElementById("progressBar").style["width"] = progress
+        else if type == "plus_type"
+          PracticerHelper.plus()
+          document.getElementById("progressBar").style["width"] = progress
+        else if type == "minus_type"
+          PracticerHelper.minus()
+          document.getElementById("progressBar").style["width"] = progress
+        else if type == "multiply_type"
+          PracticerHelper.multiply()
+          document.getElementById("progressBar").style["width"] = progress
+        else if type == "division_type"
+          PracticerHelper.division()
+          document.getElementById("progressBar").style["width"] = progress
       else
         e.preventDefault()
-        console.log "Haz concluido una prueba"
+        swal "¡Haz concluido esta prueba, ve al dashboard!"
         calification = parseInt($("#record").html())
         alert "tu calificación de la prueba fue de #{calification}. Guardando dato"
         $('#record').html(0)
@@ -49,12 +62,12 @@ class @.RandomHelper
       when random == 1 then '+'
       when random == 2 then '-'
       when random == 3  then '*'
-      when random == 4 then '%'
+      when random == 4  then '%'
     result = switch
       when operator == '+' then numberOne + numberTwo
       when operator == '-' then numberOne - numberTwo
       when operator == '*' then numberOne * numberTwo
-      when operator == '%' then numberTwo % numberOne
+      when operator == '%' then numberOne / numberTwo
 
     tuple =
       num1: numberOne
@@ -66,7 +79,10 @@ class @.RandomHelper
 
   @drawNumbers:(size, divName)->
     counter = 1
+    console.log "Dibujando numeros"
+    console.log size
     while counter <= size
+      console.log "Poniendo abeja"
       $(divName).after("<img src='resources/abeja.png' />")
       counter++
 
@@ -83,6 +99,79 @@ class @.PracticerHelper
     Teacher.evaluate "practice_type"
     RandomHelper.drawNumbers numbers.num1, "#numberOne"
     RandomHelper.drawNumbers numbers.num2, "#numberTwo"
+
+  @multiply: ->
+    numbers = RandomHelper.numbers()
+    context =
+      num1: numbers.num1
+      num2: numbers.num2
+      operator:'x'
+      result: numbers.num1 * numbers.num2
+    html = ViewResolver.mergeViewWithModel "#multiply-hb", context
+    $("#handlebars").html(html)
+    Teacher.evaluate "multiply_type"
+    RandomHelper.drawNumbers numbers.num1, "#numberOne"
+    RandomHelper.drawNumbers numbers.num2, "#numberTwo"
+
+  @plus: ->
+    numbers = RandomHelper.numbers()
+    context =
+      num1: numbers.num1
+      num2: numbers.num2
+      operator:'+'
+      result: numbers.num1 + numbers.num2
+    html = ViewResolver.mergeViewWithModel "#plus-hb", context
+    $("#handlebars").html(html)
+    Teacher.evaluate "plus_type"
+    RandomHelper.drawNumbers numbers.num1, "#numberOne"
+    RandomHelper.drawNumbers numbers.num2, "#numberTwo"
+
+  @minus: ->
+      numbers = RandomHelper.numbers()
+    #if(numbers.num1 > numbers.num2)
+      context =
+        num1: numbers.num1
+        num2: numbers.num2
+        operator:'-'
+        result: numbers.num1 - numbers.num2
+      html = ViewResolver.mergeViewWithModel "#minus-hb", context
+      $("#handlebars").html(html)
+      Teacher.evaluate "minus_type"
+      RandomHelper.drawNumbers numbers.num1, "#numberOne"
+      RandomHelper.drawNumbers numbers.num2, "#numberTwo"
+    #else
+    #  context =
+    #    num1: numbers.num2
+    #    num2: numbers.num1
+    #    operator:'-'
+    #    result: numbers.num1 - numbers.num2
+    #  html = ViewResolver.mergeViewWithModel "#minus-hb", context
+    #  $("#handlebars").html(html)
+    #  Teacher.evaluate "minus_type"
+    #  RandomHelper.drawNumbers context.num1, "#numberOne"
+    #  RandomHelper.drawNumbers context.num2, "#numberTwo"
+
+  @division: ->
+    numbers = RandomHelper.numbers()
+    console.log "Obteniendo numeros"
+    if(numbers.num1 < numbers.num2)
+      context =
+        num1: numbers.num2
+        num2: numbers.num1
+        operator:'%'
+        result: numbers.num2 / numbers.num1
+    else
+      context =
+        num1: numbers.num1
+        num2: numbers.num2
+        operator:'%'
+        result: numbers.num1 / numbers.num2
+    html = ViewResolver.mergeViewWithModel "#division-hb", context
+    $("#handlebars").html(html)
+    Teacher.evaluate "division_type"
+    console.log context
+    RandomHelper.drawNumbers context.num1, "#numberOne"
+    RandomHelper.drawNumbers context.num2, "#numberTwo"
 
   @exam: ->
     numbers = RandomHelper.numbers()
