@@ -46,7 +46,8 @@ class @.Teacher
         e.preventDefault()
         swal "¡Haz concluido esta prueba, ve al dashboard!"
         calification = parseInt($("#record").html())
-        alert "tu calificación de la prueba fue de #{calification}. Guardando dato"
+        console.log "tu calificación de la prueba fue de #{calification}. Guardando dato"
+        swal 'Terminaste una prueba', 'Tu calificación es de #{calificacion}', 'success'
         $('#record').html(0)
         $('#iteration').html(0)
         ConnectorManager.addTest calification, type
