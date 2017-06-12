@@ -145,10 +145,79 @@ router.route("/findRecord").handler{ routingContext ->
   def user= [username: routingContext.user().delegate.principal.map.username]
   vertx.eventBus().send("com.carlogilmar.test.findAll", user, { reply ->
     if (reply.succeeded()){
+    //All records
     ArrayList records = reply.result().body()
-    List dates = records.collect{ it.date }
-    List evaluations = records.collect{ it.evaluation }
-    Map response = [dates: dates, evaluations:evaluations]
+
+    println records.size()
+
+    ArrayList examDates = []
+    ArrayList examEval = []
+    ArrayList practiceDates = []
+    ArrayList practiceEval = []
+    ArrayList plusDates= []
+    ArrayList plusEval= []
+    ArrayList minusDates= []
+    ArrayList minusEval= []
+    ArrayList multiplyDates= []
+    ArrayList multiplyEval= []
+    ArrayList divisionDates= []
+    ArrayList divisionEval= []
+
+    records.each{ rec ->
+      if(rec.type == "exam_type"){
+        examDates << rec.date
+        examEval << rec.evaluation
+      }
+      else if (rec.type=="plus_type"){
+        plusDates<< rec.date
+        plusEval<< rec.evaluation
+        practiceDates<< rec.date
+        practiceEval<< rec.evaluation
+      }
+      else if (rec.type=="minus_type"){
+        minusDates<< rec.date
+        minusEval<< rec.evaluation
+        practiceDates<< rec.date
+        practiceEval<< rec.evaluation
+      }
+      else if (rec.type=="multiply_type"){
+        multiplyDates<< rec.date
+        multiplyEval<< rec.evaluation
+        practiceDates<< rec.date
+        practiceEval<< rec.evaluation
+      }
+      else if (rec.type=="division_type"){
+        divisionDates<< rec.date
+        divisionEval<< rec.evaluation
+        practiceDates<< rec.date
+        practiceEval<< rec.evaluation
+      }
+      else{
+        practiceDates<< rec.date
+        practiceEval<< rec.evaluation
+      }
+    }
+
+
+    //Response
+    Map response = [dates: practiceDates,
+                   evaluations:practiceEval,
+                   practiceCounter: practiceDates.size(),
+                   examDates: examDates,
+                   examEval: examEval,
+                   examCounter: examDates.size(),
+                   plusDates:plusDates,
+                   plusEval: plusEval,
+                   plusCounter: plusDates.size(),
+                   minusDates: minusDates,
+                   minusEval: minusEval,
+                   minusCounter: minusDates.size(),
+                   multiplyDates: multiplyDates,
+                   multiplyEval: multiplyEval,
+                   multiplyCounter: multiplyDates.size(),
+                   divisionDates: divisionDates,
+                   divisionEval: divisionEval,
+                   divisionCounter: divisionDates.size()]
       routingContext.response()
       .setStatusCode(201)
       .putHeader("content-type", "application/json; charset=utf-8")
