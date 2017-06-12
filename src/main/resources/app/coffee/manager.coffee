@@ -57,17 +57,15 @@ class @.RandomHelper
   @numbers: ->
     numberOne = parseInt Math.random() * (10 - 1) + 1
     numberTwo = parseInt Math.random() * (numberOne - 1) + 1
-    random = parseInt Math.random() * (5 - 1) + 1
+    random = parseInt Math.random() * (4 - 1) + 1
     operator = switch
       when random == 1 then '+'
       when random == 2 then '-'
       when random == 3  then '*'
-      when random == 4  then '%'
     result = switch
       when operator == '+' then numberOne + numberTwo
       when operator == '-' then numberOne - numberTwo
       when operator == '*' then numberOne * numberTwo
-      when operator == '%' then numberOne / numberTwo
 
     tuple =
       num1: numberOne
@@ -79,8 +77,6 @@ class @.RandomHelper
 
   @drawNumbers:(size, divName)->
     counter = 1
-    console.log "Dibujando numeros"
-    console.log size
     while counter <= size
       console.log "Poniendo abeja"
       $(divName).after("<img src='resources/abeja.png' />")
@@ -204,17 +200,49 @@ class @.ConnectorManager
 
   @getRecords:->
     $.get('http://localhost:8000/findRecord').done((response)->
-      console.log "leyendo record"
-      console.log response
-      console.log response.dates
-      console.log response.evaluations
-      new (Chartist.Line)('.ct-chart', {
-        series: [response.evaluations]
-        #labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-        #series: [[1, 2, 2.5, 3.5, 4]]
+      new (Chartist.Line)('.exam-chart', {
+        series: [response.examEval]
       },
           width: 1000
           height: 500)
+
+      new (Chartist.Line)('.practice-chart', {
+        series: [response.evaluations]
+      },
+          width: 1000
+          height: 500)
+
+      new (Chartist.Line)('.plus-chart', {
+        series: [response.plusEval]
+      },
+          width: 1000
+          height: 500)
+
+      new (Chartist.Line)('.minus-chart', {
+        series: [response.minusEval]
+      },
+          width: 1000
+          height: 500)
+
+      new (Chartist.Line)('.multiply-chart', {
+        series: [response.multiplyEval]
+      },
+          width: 1000
+          height: 500)
+
+      new (Chartist.Line)('.division-chart', {
+        series: [response.divisionEval]
+      },
+          width: 1000
+          height: 500)
+
+      $("#examCounter").html("#{response.examCounter}")
+      $("#practiceCounter").html("#{response.practiceCounter}")
+      $("#plusCounter").html("#{response.plusCounter}")
+      $("#minusCounter").html("#{response.minusCounter}")
+      $("#multiplyCounter").html("#{response.multiplyCounter}")
+      $("#divisionCounter").html("#{response.divisionCounter}")
+
     ).fail ->
       console.log "Error al consultar el record"
 

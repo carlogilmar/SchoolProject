@@ -2,6 +2,10 @@ class @.App
   constructor: ->
     @manager= new UrlManager()
     Verticle.init()
+    $('html').bind 'keypress', (e) ->
+      if e.keyCode == 13
+        return false
+      return
 
 class @.UrlManager
 
