@@ -29,12 +29,12 @@
             <div class="bs-component">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <span class="badge">14</span>
-                  Pruebas de Práctica
+                  <span class="badge" id="examCounter">0</span>
+                  Examenes realizados
                 </li>
                 <li class="list-group-item">
-                  <span class="badge">2</span>
-                  Pruebas de Razonamiento
+                  <span class="badge" id="practiceCounter">0</span>
+                  Practicas totales
                 </li>
               </ul>
             </div>
@@ -44,12 +44,12 @@
             <div class="bs-component">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <span class="badge">14</span>
-                  Cras justo odio
+                  <span class="badge" id="plusCounter">0</span>
+                  Prácticas de sumas realizadas
                 </li>
                 <li class="list-group-item">
-                  <span class="badge">2</span>
-                  Dapibus ac facilisis in
+                  <span class="badge" id="minusCounter">0</span>
+                  Prácticas de restas realizadas
                 </li>
               </ul>
             </div>
@@ -60,23 +60,50 @@
             <div class="bs-component">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <span class="badge">14</span>
-                  Cras justo odio
+                  <span class="badge" id="multiplyCounter">0</span>
+                  Prácticas de multiplicaciones
                 </li>
                 <li class="list-group-item">
-                  <span class="badge">2</span>
-                  Dapibus ac facilisis in
+                  <span class="badge" id="divisionCounter">0</span>
+                  Prácticas de divisiones
                 </li>
               </ul>
             </div>
             </div>
         </div>
+
     <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-8">
-    <div class="ct-chart"></div>
+    <h3> Trayectoria de los exámenes</h3><br>
+    <div class="exam-chart"></div>
+    <h3> Trayectoria de prácticas</h3><br>
+    <div class="practice-chart"></div>
     </div>
     </div>
+
+    <div class="row text-center center">
+      <div class="col-md-6">
+        <h3> Trayectoria de las sumas realizadas </h3><br>
+        <div class="plus-chart"></div>
+      </div>
+      <div class="col-md-6">
+        <h3> Trayectoria de las restas realizadas</h3><br>
+        <div class="minus-chart"></div>
+      </div>
+    </div>
+
+    <div class="row text-center center">
+      <div class="col-md-6">
+        <h3> Trayectoria de las multiplicaciones realizadas </h3><br>
+        <div class="multiply-chart"></div>
+      </div>
+      <div class="col-md-6">
+        <h3> Trayectoria de las divisiones realizadas </h3><br>
+        <div class="division-chart"></div>
+      </div>
+    </div>
+
     </script>
 
     <script id="exam-hb" type="text/x-handlebars-template">
