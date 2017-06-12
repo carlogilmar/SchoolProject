@@ -6,8 +6,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet">
     <link href="css/boots.css" rel="stylesheet">
     <link rel="stylesheet" href="third-party/chartist/dist/chartist.css">
+    <link rel="stylesheet" href="third-party/bootstrap-sweetalert/dist/sweetalert.css">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/styleVivus.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/58a3f5ec2b.js"></script>
   </head>
 
   <body>
@@ -82,7 +84,6 @@
       <div class="col-md-6 col-md-offset-3">
 
        <h2>Examen de Ejercicios Prácticos</h2><br>
-       <p align="center"> Resuelve y practica con un examen de 10 ejercicios prácticos, aquí arriba tienes el contador de puntos y el de ejercicios resueltos</p><br>
 
        <div class="bs-component">
         <div class="progress progress-striped active">
@@ -106,7 +107,6 @@
       <div class="col-md-6 col-md-offset-3">
 
        <h2>Set de Prácticas</h2><br>
-       <p align="center"> Resuelve un set de 10 ejercicios prácticos, aquí arriba tienes el contador de puntos y el de ejercicios resueltos</p><br>
 
       <div class="bs-component">
         <div class="progress progress-striped active">
@@ -212,7 +212,7 @@
 
     </script>
 
-    <nav class="navbar navbar-light" style="background-color: #FFD768;">
+    <nav class="navbar navbar-light" style="background-color: #94AFF6;">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -226,13 +226,20 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul id="nav" class="nav navbar-nav navbar-right">
 
-            <li class="active"><a href="#/practice"> Practica <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="#/problems"> Razona <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#/practice" style="background-color:#FFC300;"> <i class="fa fa-plus-square" aria-hidden="true"></i>
+                <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#/practice" style="background-color:#FFC300;"> <i class="fa fa-minus-square" aria-hidden="true"></i>
+                <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#/practice" style="background-color:#FFC300;"> <i class="fa fa-window-close" aria-hidden="true"></i>
+                <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#/practice" style="background-color:#FFC300;"> <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                <span class="sr-only">(current)</span></a></li>
+
             <li class="active"><a href="#/exams">¡Evalua con Examen!<span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#"> Dashboard <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#/info"> Información <span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
-              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="background-color:#FC6A6A;"><small>Respuestas Correctas</small><i class="fa fa-fw fa-bell-o"></i> &nbsp; <span class="badge" id="record">0</span></a>
+              <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="background-color:#FC6A6A;"><small>Respuestas Correctas</small> &nbsp; <span class="badge" id="record">0</span></a>
             </li>
             <li class="dropdown">
               <a href="#/practice" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="background-color:#FC6A6A;">Índice &nbsp;<span class="badge" id="iteration">0</span></a>
@@ -284,8 +291,7 @@
 
       <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center">
-          <h1 align="center">Plataforma para aprender matemáticas</h1>
-          <a href="#/info"><h2>Cómo funciona</h2></a>
+          <h1 align="center">Plataforma para aprender</h1>
         </div>
       </div>
 
@@ -307,6 +313,7 @@
     <script type="text/javascript" src="third-party/chartist/dist/chartist.js"></script>
     <script type="text/javascript" src="third-party/sockjs-client/dist/sockjs.js"></script>
     <script type="text/javascript" src="third-party/vertx3-eventbus-client/vertx-eventbus.js"></script>
+    <script type="text/javascript" src="third-party/bootstrap-sweetalert/dist/sweetalert.js"></script>
     <script type="text/javascript" src="coffee/controller.js"></script>
     <script type="text/javascript" src="coffee/manager.js"></script>
     <script type="text/javascript" src="coffee/app.js"></script>

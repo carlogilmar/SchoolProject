@@ -26,33 +26,55 @@
     <br>
     <br>
 
-    <div class="row">
-      <div class="col-6 col-md-4"></div>
-      <div class="col-6 col-md-4">
-        <h3 class="font" align="center">Inicia sesión</h3>
-        <div class="center">
-          <form action="/loginhandler" method="post">
-            <div class="form-group">
-              <label for="exampleInputName2" class="common">Usuario</label>
-              <input type="text" class="form-control"id="username" name="username" required >
-            </div>
-              <div class="form-group">
-                <label for="password" class="common">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-              </div>
-              <br><br><button type="submit" class="btn btn-success">Iniciar Sesión</button>
-          </form>
+    <div class="container">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">¡Bienvenidos!</h3>
+          </div>
+          <div class="panel-body text-center">
+            <strong>¡Registra a tu pequeño a Delta Interactive Platform para que comience a practicar matemáticas!</strong><br>
+            <strong>Visualiza</strong> el avance que ha desarrollado, y así podrás conocer el grado de aprendizaje.<br>
+            <strong> Evalua </strong> la capacidad matemática del niño con exámenes simples que permiten determinar un nivel de conocimiento.<br>
+            <strong> Controla </strong>  la cantidad de ejercicios de práctica.<br>
+            <strong> Mejora </strong> el desempeño escolar de tu pequeño.<br>
+            <hr>
+            Elige una opción:<br>
+            <a class="btn btn-success" href="http://localhost:8000/static/login.html">Iniciar Sesión</a>
+            <br><br>
+            <a class="btn btn-info" href="http://localhost:8000/static/register.html">Quiero iniciar mi registro</a>
+            <br>
+            <hr>
+            <a class="btn btn-primary" href="http://localhost:8000/static/info.html">Más sobre la aplicación</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="center">
-      <h2 class="common" align="center">¿Quieres aprender matemáticas? ¡ Puedes registrarte tú y tu tutor para comenzar a practicar!</h2>
-      <a class="btn btn-primary" href="http://localhost:8000/static/login.html">Quiero iniciar mi registro</a>
-    </div>
-
-    <div>
-      <video autoplay="autoplay" loop="loop" id="video_background" preload="auto" muted/>
+    <video autoplay="autoplay" loop="loop" id="video_background" preload="auto" muted/>
           <source src="resources/beedle.mp4" type="video/mp4" />
       </video/>
     </div>
