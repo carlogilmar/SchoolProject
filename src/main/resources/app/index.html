@@ -20,7 +20,8 @@
 
     <script id="dashboard" type="text/x-handlebars-template">
     <div class="row">
-      <h3 class="text-center"><b> Record de tus pruebas </b></h3>
+      <h3 class="text-center"><b> Record de tus pruebas </b></h3><br>
+      <h2 class="text-center"><b> Mira la cantidad de pruebas hechas y su evaluación </b></h2>
     </div>
 
     <hr>
@@ -83,26 +84,24 @@
     </div>
 
     <div class="row text-center center">
-      <div class="col-md-6">
         <h3> Trayectoria de las sumas realizadas </h3><br>
         <div class="plus-chart"></div>
-      </div>
-      <div class="col-md-6">
-        <h3> Trayectoria de las restas realizadas</h3><br>
-        <div class="minus-chart"></div>
-      </div>
     </div>
 
     <div class="row text-center center">
-      <div class="col-md-6">
+        <h3> Trayectoria de las restas realizadas</h3><br>
+        <div class="minus-chart"></div>
+    </div>
+
+    <div class="row text-center center">
         <h3> Trayectoria de las multiplicaciones realizadas </h3><br>
         <div class="multiply-chart"></div>
       </div>
-      <div class="col-md-6">
+
+    <div class="row text-center center">
         <h3> Trayectoria de las divisiones realizadas </h3><br>
         <div class="division-chart"></div>
       </div>
-    </div>
 
     </script>
 
@@ -165,7 +164,7 @@
 
       <div class="bs-component">
         <div class="progress progress-striped active">
-          <div class="progress-bar" id="progressbar" style="width: 0%"></div>
+          <div class="progress-bar" id="progressBar" style="width: 0%"></div>
         </div>
        </div>
 
@@ -177,11 +176,11 @@
         <div id="result"><h1>=</h1></div>
 
       <form method="post">
-        <input type="number" id="responseinput" required />
-        <input type="hidden" id="resultinput" value={{result}} required />
+        <input type="number" id="responseInput" required />
+        <input type="hidden" id="resultInput" value={{result}} required />
       </form><br>
 
-    <button type="button" id="nexteval" class="btn btn-primary">evaluar</button>
+    <button type="button" id="nextEval" class="btn btn-primary">evaluar</button>
     </div>
     </script>
 
@@ -193,7 +192,7 @@
 
       <div class="bs-component">
         <div class="progress progress-striped active">
-          <div class="progress-bar" id="progressbar" style="width: 0%"></div>
+          <div class="progress-bar" id="progressBar" style="width: 0%"></div>
         </div>
        </div>
 
@@ -205,11 +204,11 @@
         <div id="result"><h1>=</h1></div>
 
       <form method="post">
-        <input type="number" id="responseinput" required />
-        <input type="hidden" id="resultinput" value={{result}} required />
+        <input type="number" id="responseInput" required />
+        <input type="hidden" id="resultInput" value={{result}} required />
       </form><br>
 
-    <button type="button" id="nexteval" class="btn btn-primary">evaluar</button>
+    <button type="button" id="nextEval" class="btn btn-primary">evaluar</button>
     </div>
     </script>
 
@@ -298,7 +297,7 @@
                     <img class="first-slide" src="https://drscdn.500px.org/photo/202219021/q%3D80_m%3D2000/3488bd33650cce84b8b131767d77fdcb" alt="First slide">
                     <div class="container">
                       <div class="carousel-caption">
-                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                        <p>Práctica con ejercicios</p>
                       </div>
                     </div>
                   </div>
@@ -306,7 +305,7 @@
                     <img class="second-slide" src="https://drscdn.500px.org/photo/156615783/q%3D80_m%3D2000/eeb44d424279b38c9279d107a8616f4a" alt="Second slide">
                     <div class="container">
                       <div class="carousel-caption">
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p>Mide el desempeño con gráficas</p>
                       </div>
                     </div>
                   </div>
@@ -314,7 +313,7 @@
                     <img class="third-slide" src="https://drscdn.500px.org/photo/156956513/q%3D80_m%3D2000/c51248ce5db14fd25bd87f0e7eca388c" alt="Third slide">
                     <div class="container">
                       <div class="carousel-caption">
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p>Continua practicando</p>
                       </div>
                     </div>
                   </div>
@@ -326,28 +325,6 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div><!-- /.carousel -->
-
-      <div class="row">
-              <!-- Example row of columns -->
-              <div class="row text-center">
-                <div class="col-md-4">
-                  <h2>Heading</h2>
-                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-4">
-                  <h2>Heading</h2>
-                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-                </div>
-                <div class="col-md-4">
-                  <h2>Heading</h2>
-                  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
 
     </script>
 

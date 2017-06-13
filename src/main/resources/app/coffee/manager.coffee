@@ -8,6 +8,7 @@ class @.Teacher
 
   @evaluate:(type)->
     $('#nextEval').on 'click', (e) ->
+      console.log "Evaluando ando"
       if $('#resultInput').val() == $('#responseInput').val()
         swal 'Respuesta Correcta', '¡Acierto!', 'success'
         record = parseInt($("#record").html())
@@ -47,7 +48,7 @@ class @.Teacher
         swal "¡Haz concluido esta prueba, ve al dashboard!"
         calification = parseInt($("#record").html())
         console.log "tu calificación de la prueba fue de #{calification}. Guardando dato"
-        swal 'Terminaste una prueba', 'Tu calificación es de #{calificacion}', 'success'
+        swal 'Terminaste una prueba', "Tu calificación es de #{calification}", 'success'
         $('#record').html(0)
         $('#iteration').html(0)
         ConnectorManager.addTest calification, type
@@ -67,13 +68,24 @@ class @.RandomHelper
       when operator == '+' then numberOne + numberTwo
       when operator == '-' then numberOne - numberTwo
       when operator == '*' then numberOne * numberTwo
-
     tuple =
       num1: numberOne
       num2: numberTwo
       operator: operator
       result: result
+    tuple
 
+  @divisionNumbers: ->
+    numberOne = parseInt Math.random() * (10 - 1) + 1
+    numberTwo = parseInt Math.random() * (numberOne - 1) + 1
+    if(numberOne % 2 != 0)
+      numberOne = numberOne + 1
+    if(numberOne % numberTwo != 0)
+      # no es exactamente divisible
+      numberTwo = 2
+    tuple =
+      num1: numberOne
+      num2: numberTwo
     tuple
 
   @drawNumbers:(size, divName)->
@@ -124,8 +136,8 @@ class @.PracticerHelper
     RandomHelper.drawNumbers numbers.num2, "#numberTwo"
 
   @minus: ->
-      numbers = RandomHelper.numbers()
-    #if(numbers.num1 > numbers.num2)
+    numbers = RandomHelper.numbers()
+    if(numbers.num1 > numbers.num2)
       context =
         num1: numbers.num1
         num2: numbers.num2
@@ -134,22 +146,22 @@ class @.PracticerHelper
       html = ViewResolver.mergeViewWithModel "#minus-hb", context
       $("#handlebars").html(html)
       Teacher.evaluate "minus_type"
-      RandomHelper.drawNumbers numbers.num1, "#numberOne"
-      RandomHelper.drawNumbers numbers.num2, "#numberTwo"
-    #else
-    #  context =
-    #    num1: numbers.num2
-    #    num2: numbers.num1
-    #    operator:'-'
-    #    result: numbers.num1 - numbers.num2
-    #  html = ViewResolver.mergeViewWithModel "#minus-hb", context
-    #  $("#handlebars").html(html)
-    #  Teacher.evaluate "minus_type"
-    #  RandomHelper.drawNumbers context.num1, "#numberOne"
-    #  RandomHelper.drawNumbers context.num2, "#numberTwo"
+      RandomHelper.drawNumbers context.num1, "#numberOne"
+      RandomHelper.drawNumbers context.num2, "#numberTwo"
+    else
+      context =
+        num1: numbers.num2
+        num2: numbers.num1
+        operator:'-'
+        result: numbers.num2 - numbers.num1
+      html = ViewResolver.mergeViewWithModel "#minus-hb", context
+      $("#handlebars").html(html)
+      Teacher.evaluate "minus_type"
+      RandomHelper.drawNumbers context.num1, "#numberOne"
+      RandomHelper.drawNumbers context.num2, "#numberTwo"
 
   @division: ->
-    numbers = RandomHelper.numbers()
+    numbers = RandomHelper.divisionNumbers()
     console.log "Obteniendo numeros"
     if(numbers.num1 < numbers.num2)
       context =
@@ -205,37 +217,43 @@ class @.ConnectorManager
         series: [response.examEval]
       },
           width: 1000
-          height: 500)
+          height: 500
+          showArea: true)
 
       new (Chartist.Line)('.practice-chart', {
         series: [response.evaluations]
       },
           width: 1000
-          height: 500)
+          height: 500
+          showArea: true)
 
       new (Chartist.Line)('.plus-chart', {
         series: [response.plusEval]
       },
           width: 1000
-          height: 500)
+          height: 500
+          showArea: true)
 
       new (Chartist.Line)('.minus-chart', {
         series: [response.minusEval]
       },
           width: 1000
-          height: 500)
+          height: 500
+          showArea: true)
 
       new (Chartist.Line)('.multiply-chart', {
         series: [response.multiplyEval]
       },
           width: 1000
-          height: 500)
+          height: 500
+          showArea: true)
 
       new (Chartist.Line)('.division-chart', {
         series: [response.divisionEval]
       },
           width: 1000
-          height: 500)
+          height: 500
+          showArea: true)
 
       $("#examCounter").html("#{response.examCounter}")
       $("#practiceCounter").html("#{response.practiceCounter}")
